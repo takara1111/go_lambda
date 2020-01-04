@@ -11,8 +11,8 @@ build:
 
 # 追加
 packege:
-	sam package --template-file sam-app/template.yaml --output-template-file sam-app/output-template.yaml --s3-bucket template-store --profile koike
+	sam package --template-file template.yaml --output-template-file output-template.yaml --s3-bucket sam-template-store-takara --profile takara
 
 # 追加
 deploy:
-	sam deploy --template-file sam-app/output-template.yaml --stack-name go-lambda --capabilities CAPABILITY_IAM --profile koike
+	sam deploy --template-file output-template.yaml --stack-name go-lambda --capabilities CAPABILITY_IAM --profile koike
