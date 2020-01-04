@@ -9,10 +9,24 @@ Globals:
   Function:
     Timeout: 5
 Resources:
+  ScoreRegisterFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: s3://sam-template-store-takara/4ff3059d4b37a5bff41e08cf26006f92
+      Handler: score-register
+      Runtime: go1.x
+      Tracing: Active
+      Events:
+        CatchAll:
+          Type: Api
+          Properties:
+            Path: /scores
+            Method: POST
+      Policies: AmazonDynamoDBFullAccess
   HelloWorldFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://sam-template-store-takara/45db3b684e956275f70123615668718c
+      CodeUri: s3://sam-template-store-takara/28d810525c5ab5450c81b58718a2dcfb
       Handler: hello-world
       Runtime: go1.x
       Tracing: Active
