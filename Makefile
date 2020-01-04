@@ -8,7 +8,6 @@ clean:
 	
 build:
 	GOOS=linux GOARCH=amd64 go build -o hello-world/hello-world ./hello-world
-	#複数のLambdaを用意する場合はここにビルド対象を追加していく
 
 # 追加
 packege:
