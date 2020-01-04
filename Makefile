@@ -11,7 +11,7 @@ build:
 	GOOS=linux GOARCH=amd64 go build -o score-register/score-register ./score-register
 
 # 追加
-packege:
+package:
 	sam package --template-file template.yaml --output-template-file output-template.yaml --s3-bucket sam-template-store-takara --profile takara
 
 # 追加
