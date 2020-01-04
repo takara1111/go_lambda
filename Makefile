@@ -9,6 +9,7 @@ clean:
 build:
 	GOOS=linux GOARCH=amd64 go build -o hello-world/hello-world ./hello-world
 	GOOS=linux GOARCH=amd64 go build -o score-register/score-register ./score-register
+	GOOS=linux GOARCH=amd64 go build -o score-fetcher/score-fetcher ./score-fetcher
 
 # 追加
 package:

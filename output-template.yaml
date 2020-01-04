@@ -12,7 +12,7 @@ Resources:
   ScoreRegisterFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://sam-template-store-takara/4ff3059d4b37a5bff41e08cf26006f92
+      CodeUri: s3://sam-template-store-takara/d451da30ff6c76f34ee877a7aca492b0
       Handler: score-register
       Runtime: go1.x
       Tracing: Active
@@ -23,10 +23,24 @@ Resources:
             Path: /scores
             Method: POST
       Policies: AmazonDynamoDBFullAccess
+  ScoreFetcherFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: s3://sam-template-store-takara/75a3c1bc45a6e7144e9beba25428cb30
+      Handler: score-fetcher
+      Runtime: go1.x
+      Tracing: Active
+      Events:
+        CatchAll:
+          Type: Api
+          Properties:
+            Path: /people/{personID}/scores
+            Method: GET
+      Policies: AmazonDynamoDBReadOnlyAccess
   HelloWorldFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://sam-template-store-takara/28d810525c5ab5450c81b58718a2dcfb
+      CodeUri: s3://sam-template-store-takara/d0b43082b5f2363a527eed89e629d607
       Handler: hello-world
       Runtime: go1.x
       Tracing: Active

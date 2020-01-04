@@ -25,6 +25,20 @@ Resources:
             Path: /scores
             Method: POST
       Policies: AmazonDynamoDBFullAccess
+  ScoreFetcherFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: score-fetcher/
+      Handler: score-fetcher
+      Runtime: go1.x
+      Tracing: Active # https://docs.aws.amazon.com/lambda/latest/dg/lambda-x-ray.html
+      Events:
+        CatchAll:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /people/{personID}/scores
+            Method: GET
+      Policies: AmazonDynamoDBReadOnlyAccess # READのみのため権限を絞る
   HelloWorldFunction:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
