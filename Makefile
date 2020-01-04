@@ -8,6 +8,7 @@ clean:
 	
 build:
 	GOOS=linux GOARCH=amd64 go build -o hello-world/hello-world ./hello-world
+	GOOS=linux GOARCH=amd64 go build -o score-register/score-register ./score-register
 
 # 追加
 packege:
@@ -16,3 +17,6 @@ packege:
 # 追加
 deploy:
 	sam deploy --template-file output-template.yaml --stack-name sam-template-store-takara --capabilities CAPABILITY_IAM --profile takara
+
+dynamodb:
+	aws dynamodb create-table --table-name Score --attribute-definitions AttributeName=PersonID,AttributeType=S AttributeName=TestID,AttributeType=S --key-schema AttributeName=PersonID,KeyType=HASH AttributeName=TestID,KeyType=RANGE --provisioned-throughput ReadCapacityUnits=1,WriteCapacityUnits=1 --profile takara
