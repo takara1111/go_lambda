@@ -15,4 +15,4 @@ packege:
 
 # 追加
 deploy:
-	sam deploy --template-file output-template.yaml --stack-name go-lambda --capabilities CAPABILITY_IAM --profile koike
+	sam deploy --template-file output-template.yaml --stack-name sam-template-store-takara --capabilities CAPABILITY_IAM --profile takara
